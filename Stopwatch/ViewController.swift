@@ -43,8 +43,8 @@ class ViewController: UIViewController {
   }
 
   func setupStartButton() {
-    let tapped = UITapGestureRecognizer(target: self, action: #selector(tap))
-    let held = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+    let tapped = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+    let held = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
 //    held.minimumPressDuration = 1.3
 
     startButton.addGestureRecognizer(tapped)
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     startButton.isUserInteractionEnabled = true
   }
 
-  @objc func tap() {
+  @objc func handleTap() {
     if let _ = timer {
       self.startButton.backgroundColor = .gray
       timer.invalidate()
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     }
   }
 
-  @objc func longPress(sender: UILongPressGestureRecognizer) {
+  @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
     sender.minimumPressDuration = 1.3
     if sender.state == .began {
       if let _ = timer {
